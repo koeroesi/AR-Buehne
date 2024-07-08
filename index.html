@@ -26,8 +26,8 @@
             height: 50vh;
             margin-bottom: 20px;
         }
-        #ar-button {
-            display: none;
+        model-viewer button#ar-button {
+            display: none !important;
         }
         .custom-ar-button {
             background-color: black;
@@ -48,12 +48,13 @@
             transform: scale(1.1);
         }
         .headline {
-            font-family: 'Times New Roman', Times, serif; /* Changed font family to Times New Roman */
+            font-family: 'Times New Roman', Times, serif;
             font-size: 28px;
             font-weight: bold;
             text-align: center;
             margin-bottom: 30px;
             color: white;
+            text-decoration: underline;
         }
         .display-text {
             text-align: center;
@@ -64,6 +65,9 @@
         }
         .display-text small {
             font-size: 80%;
+        }
+        .display-text-1 {
+            font-style: italic;
         }
         #audio-player {
             margin-bottom: 30px;
@@ -122,7 +126,7 @@
 
     <button id="play-button">Play audio first</button>
 
-    <p id="display-text-1" class="display-text">
+    <p id="display-text-1" class="display-text display-text-1">
         Bald ists vorüber und der Erde geb ich,<br><br>
         Der ewgen Sonne die Atome wieder,<br><br>
         Die sich zu Schmerz und Lust in mir gefügt –<br><br>
