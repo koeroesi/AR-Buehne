@@ -4,148 +4,180 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surrounded by Selectors</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: url('Render.png') no-repeat center center fixed;
-            background-size: cover;
-            color: white;
-            transition: background-color 0.1s;
-            overflow-y: scroll;
-        }
-        .container {
+            font-family: 'Roboto', Arial, sans-serif; /* Use Roboto font */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            min-height: 100vh;
-            padding: 20px;
+            height: 100%;
+            margin: 0;
+            padding: 20px; /* Add padding for space around content */
+            background: url('Render.png') no-repeat center center fixed; /* Replace with your image path */
+            background-size: cover;
+            color: white;
+            overflow-y: auto; /* Enable vertical scrolling */
         }
         model-viewer {
-            width: 50%;
-            height: 40vh;
+            width: 80%;
+            height: 60vh;
             display: block;
             margin: auto;
+            margin-bottom: 20px; /* Space below the model */
         }
         .ar-button {
-            background-color: #333;
+            background-color: black;
             color: white;
-            padding: 20px 40px;
-            font-size: 20px;
+            padding: 15px 30px;
+            font-size: 18px;
             cursor: pointer;
             transition: all 0.3s ease;
             outline: none;
-            border-radius: 10px;
-            margin-top: -5cm;
+            border-radius: 5px;
             text-align: center;
+            margin-bottom: 20px; /* Space below the AR button */
         }
         .ar-button:hover {
-            background-color: #555;
+            background-color: white;
+            color: black;
             box-shadow: 0 0 10px rgba(0,0,0,0.5);
             transform: scale(1.1);
         }
-        .text-block {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            margin: 20px 0;
-            width: 80%;
-            border-radius: 10px;
+        #display-text {
+            text-align: center;
+            margin-bottom: 20px; /* Space below the text */
+            font-size: 16px; /* Smaller font size */
+            max-width: 70%; /* Reduced width by 30% */
+            line-height: 1.2; /* Reduced line height by 20% */
         }
-        #display-image {
-            max-width: 80%;
-            max-height: 80%;
-            margin-top: 20px;
-            display: none;
+        #display-text small {
+            font-size: 80%; /* 80% of the main text size */
         }
         #audio-player {
-            display: none;
+            margin-bottom: 20px; /* Space below the audio player */
+        }
+        #play-button {
+            background-color: #1a1c1a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #play-button:hover {
+            background-color: #2d2f30;
+        }
+        #instagram-link {
+    /* position: fixed; */ /* Remove fixed positioning */
+    /* bottom: 10px; */
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
+    margin-top: 20px; /* Adjust margin for spacing */
+    text-align: center; /* Center align the link */
+}
+
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <model-viewer id="model-viewer"
-                      src="Buehne.glb"
-                      ios-src="Buehne.usdz"
-                      alt="The Portal"
-                      ar
-                      ar-modes="webxr scene-viewer quick-look"
-                      environment-image="neutral"
-                      auto-rotate
-                      camera-controls
-                      animation-name="CubeAction"
-                      animation-loop>
-        </model-viewer>
+    <model-viewer id="model-viewer"
+                  src="Buehne.glb"
+                  ios-src="Buehne.usdz"
+                  alt="3D Model of The Portal"
+                  ar
+                  ar-modes="webxr scene-viewer quick-look"
+                  environment-image="neutral"
+                  auto-rotate
+                  camera-controls
+                  animation-name="CubeAction"
+                  animation-loop>
+    </model-viewer>
 
-        <button class="ar-button" onclick="openARModel()">Open AR Model</button>
-        <img id="display-image" src="" alt="Image">
+    <button class="ar-button" id="ar-button" onclick="activateAR()">Open AR-Model</button>
 
-        <audio id="audio-player">
-            <source src="Buehneaudio.ogg" type="audio/ogg">
-            <source src="Buehneaudio.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-        
-        <a href="https://www.instagram.com/leonkoeroesi/" target="_blank">
-            <img src="instagram.png" alt="Instagram" width="50" height="50">
-        </a>
+    <audio id="audio-player">
+        <source src="Buehneaudio.ogg" type="audio/ogg">
+        <source src="Buehneaudio.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <button id="play-button">Play audio first</button>
 
-        <div class="text-block">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa.</p>
-        </div>
+    <p id="display-text">
+        Bald ists vorüber und der Erde geb ich,<br><br>
 
-        <div class="text-block">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa.</p>
-        </div>
-    </div>
+        Der ewgen Sonne die Atome wieder,<br><br>
+
+        Die sich zu Schmerz und Lust in mir gefügt –<br><br>
+
+        Und von dem mächtgen Talbot, der die Welt<br><br>
+
+        Mit seinem Kriegsruhm füllte, bleibt nichts übrig,<br><br>
+
+        Als eine Handvoll leichten Staubs. – So geht<br><br>
+
+        Der Mensch zu Ende – und die einzige<br><br>
+
+        Ausbeute, die wir aus dem Kampf des Lebens<br><br>
+
+        Wegtragen, ist die Einsicht in das Nichts,<br><br>
+
+        Und herzliche Verachtung alles dessen,<br><br>
+
+        Was uns erhaben schien und wünschenswert –<br><br>
+
+        <small style="font-size: 15px;">Friedrich Schiller: Die Jungfrau von Orleans</small>
+    </p>
+
+    <p id="display-text">
+      Dieses Bühnenmodell im Maßstab 1 zu 30, ist im Kurs Inszenierte Raüme bei Natalia Stachon entstanden. 
+      Es ist insperiert von einem Ausschnitt aus Friedrich Schillers: Die Jnugfrau von Orleans.
+      Dieses AR Modell soll helfen die eigentlichen Maßstäbe des Entwurfes zu verstehen. 
+      Um die bestmögliche Erfahrung mit dem Modell zu haben ist es zu empfehlen es draußen oder 
+      in eiem großen Raum darzustellen. Das AR-Modell hat einen Umfang von 14 Quadratmetern. 
+      Sollte dies aber nicht möglich sein kann man nach dem Öffnen die skalierung mit 2 Fingern justieren. 
+
+        <small style="font-size: 15px;">Friedrich Schiller: Die Jungfrau von Orleans</small>
+    </p>
+    <a id="instagram-link" href="https://www.instagram.com/leonkoeroesi/" target="_blank">
+        <img src="instagram.png" alt="Instagram Profile" width="50" height="50">
+    </a>
 
     <script>
-        document.getElementById('model-viewer').addEventListener('ar-status', (event) => {
-            if (event.detail.status === 'session-started') {
-                const audio = document.getElementById('audio-player');
+        document.getElementById('play-button').addEventListener('click', function() {
+            const audio = document.getElementById('audio-player');
+            if (audio.paused) {
                 audio.play();
+                this.textContent = 'Pause';
+            } else {
+                audio.pause();
+                this.textContent = 'Play';
             }
-        });
-
-        function openARModel() {
-            const modelViewer = document.getElementById('model-viewer');
-            modelViewer.activateAR();
-        }
-
-        function showImage(event) {
-            event.stopPropagation();
-            const img = document.getElementById('display-image');
-            img.src = 'Text_AR_2.png';
-            img.style.display = 'block';
-        }
-
-        document.addEventListener('click', function() {
-            const img = document.getElementById('display-image');
-            img.style.display = 'none';
-        });
-
-        document.getElementById('display-image').addEventListener('click', function(event) {
-            event.stopPropagation();
         });
 
         async function checkARCoreCompatibility() {
             const modelViewer = document.getElementById('model-viewer');
-            try {
-                const isARCoreSupported = await navigator.xr.isSessionSupported('immersive-ar');
-                if (!isARCoreSupported) {
-                    modelViewer.removeAttribute('ar');
-                    modelViewer.removeAttribute('ar-modes');
-                    alert('Your device is not compatible with AR features. You can still view the 3D model.');
-                }
-            } catch (e) {
-                console.error("ARCore compatibility check failed:", e);
+            const isARCoreSupported = await navigator.xr.isSessionSupported('immersive-ar');
+            if (!isARCoreSupported) {
+                modelViewer.removeAttribute('ar');
+                modelViewer.removeAttribute('ar-modes');
+                document.getElementById('ar-button').style.display = 'none';
+                alert('Your device is not compatible with AR features. You can still view the 3D model.');
             }
+        }
+
+        function activateAR() {
+            const modelViewer = document.getElementById('model-viewer');
+            modelViewer.activateAR();
         }
 
         document.addEventListener('DOMContentLoaded', checkARCoreCompatibility);
     </script>
 </body>
+</html>
+
 </html>
