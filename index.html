@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surrounded by Selectors</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <style>
         body {
-            font-family: 'Oswald', Arial, sans-serif; /* Changed font family to Oswald */
+            font-family: 'Open Sans', Arial, sans-serif; /* Changed font family to Open Sans */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -30,7 +30,7 @@
             display: none; /* Hide the original AR button */
         }
         .headline {
-            font-family: 'Oswald', Arial, sans-serif; /* Changed font family to Oswald */
+            font-family: 'Open Sans', Arial, sans-serif; /* Changed font family to Open Sans */
             font-size: 28px; /* Increased font size */
             font-weight: bold;
             text-align: center;
@@ -39,7 +39,7 @@
         }
         #display-text {
             text-align: center;
-            margin-bottom: 30px; /* Increased margin */
+            margin-bottom: 40px; /* Increased margin */
             font-size: 16px;
             max-width: 70%;
             line-height: 1.2;
@@ -86,7 +86,7 @@
     </style>
 </head>
 <body>
-    <h1 class="headline">Eine Hand voll leichten Staub</h1>
+    <h1 class="headline">Eine Hand Hand voll leichten Staub</h1>
 
     <model-viewer id="model-viewer"
                   src="Buehne.glb"
@@ -129,15 +129,14 @@
         <small style="font-size: 15px;">Friedrich Schiller: Die Jungfrau von Orleans</small>
     </p>
 
-    <p id="display-text">
-Dieses Bühnenmodell im Maßstab 1:30 wurde im Kurs "Inszenierte Räume" bei Natalia Stachon angefertigt.<br>
-Es ist inspiriert von einem Ausschnitt aus Friedrich Schillers "Die Jungfrau von Orleans".<br>
-Das AR-Modell soll helfen, die originalen Maßstäbe des Entwurfs zu veranschaulichen.<br>
-Um die bestmögliche Erfahrung mit dem Modell zu ermöglichen, wird empfohlen, es im Freien oder in einem großen Raum zu präsentieren.<br>
-Das AR-Modell umfasst eine Fläche von 14 Quadratmetern.<br>
-Alternativ kann nach dem Öffnen die Skalierung mit zwei Fingern justiert werden, falls dies nicht möglich ist.
+    <p id="display-text" style="margin-bottom: 60px;"> <!-- Increased margin-bottom -->
+        Dieses Bühnenmodell im Maßstab 1:30 wurde im Kurs "Inszenierte Räume" bei Natalia Stachon angefertigt.<br>
+        Es ist inspiriert von einem Ausschnitt aus Friedrich Schillers "Die Jungfrau von Orleans".<br>
+        Das AR-Modell soll helfen, die originalen Maßstäbe des Entwurfs zu veranschaulichen.<br>
+        Um die bestmögliche Erfahrung mit dem Modell zu ermöglichen, wird empfohlen, es im Freien oder in einem großen Raum zu präsentieren.<br>
+        Das AR-Modell umfasst eine Fläche von 14 Quadratmetern.<br>
+        Alternativ kann nach dem Öffnen die Skalierung mit zwei Fingern justiert werden, falls dies nicht möglich ist.
         
-       
         <small style="font-size: 15px;">Friedrich Schiller: Die Jungfrau von Orleans</small>
     </p>
     
@@ -178,4 +177,3 @@ Alternativ kann nach dem Öffnen die Skalierung mit zwei Fingern justiert werden
     </script>
 </body>
 </html>
-
