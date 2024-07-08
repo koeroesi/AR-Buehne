@@ -5,33 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surrounded by Selectors</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <style>
         body {
-            font-family: 'Open Sans', Arial, sans-serif; /* Changed font family to Open Sans */
+            font-family: 'Open Sans', Arial, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
             height: 100%;
-            margin: 20px; /* Increased margin for all sides */
+            margin: 20px;
             padding: 20px;
             color: white;
             overflow-y: auto;
             background: url('Render.jpg') no-repeat center center fixed;
-            background-size: cover; /* Ensure background covers the entire container */
-        }
-        h1.headline {
-            font-family: 'Times New Roman', Times, serif; /* Changed font family to Times New Roman */
-            font-size: 28px; /* Increased font size */
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 30px; /* Increased margin */
-            color: white; /* Ensuring headline is visible on the background */
+            background-size: cover;
         }
         model-viewer {
-            width: 100%; /* Full width on all screen sizes */
-            height: 50vh; /* Adjust height as necessary */
-            margin-bottom: 20px; /* Increased margin */
+            width: 100%;
+            height: 50vh;
+            margin-bottom: 20px;
+        }
+        #ar-button {
+            display: none;
         }
         .custom-ar-button {
             background-color: black;
@@ -51,28 +47,36 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.5);
             transform: scale(1.1);
         }
-        #display-text {
+        .headline {
+            font-family: 'Times New Roman', Times, serif; /* Changed font family to Times New Roman */
+            font-size: 28px;
+            font-weight: bold;
             text-align: center;
-            margin-bottom: 40px; /* Increased margin */
+            margin-bottom: 30px;
+            color: white;
+        }
+        .display-text {
+            text-align: center;
+            margin-bottom: 40px;
             font-size: 16px;
             max-width: 70%;
-            line-height: 1.5; /* Increased line height for better spacing */
+            line-height: 1.2;
         }
-        #display-text small {
+        .display-text small {
             font-size: 80%;
         }
         #audio-player {
-            margin-bottom: 30px; /* Increased margin */
+            margin-bottom: 30px;
         }
         #play-button {
             background-color: transparent;
             color: white;
-            border: 2px solid white; /* Added white outline */
+            border: 2px solid white;
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
             border-radius: 5px;
-            margin-bottom: 30px; /* Increased margin */
+            margin-bottom: 30px;
             transition: all 0.3s ease;
         }
         #play-button:hover {
@@ -80,21 +84,20 @@
             color: black;
         }
         #instagram-link {
-            margin-top: 30px; /* Increased margin */
+            margin-top: 30px;
             text-align: center;
         }
 
-        /* Media Query for Tablets and Mobile */
         @media (max-width: 768px) {
             body {
-                padding: 10px; /* Adjusted padding for smaller screens */
+                padding: 10px;
             }
-            #display-text {
-                font-size: 14px; /* Smaller font size for readability */
-                max-width: 90%; /* Adjusted width for smaller screens */
+            .display-text {
+                font-size: 14px;
+                max-width: 90%;
             }
             model-viewer {
-                height: 40vh; /* Reduced height for smaller screens */
+                height: 40vh;
             }
         }
     </style>
@@ -115,20 +118,34 @@
                   animation-loop>
     </model-viewer>
 
-    <p id="display-text">
-        Dieses Bühnenmodell im Maßstab 1:30 wurde im Kurs "Inszenierte Räume" bei Natalia Stachon angefertigt.<br><br>
-        Es ist inspiriert von einem Ausschnitt aus Friedrich Schillers "Die Jungfrau von Orleans".<br><br>
-        Das AR-Modell soll helfen, die originalen Maßstäbe des Entwurfs zu veranschaulichen.<br><br>
-        Um die bestmögliche Erfahrung mit dem Modell zu ermöglichen, wird empfohlen, es im Freien oder in einem großen Raum zu präsentieren.<br><br>
-        Das AR-Modell umfasst eine Fläche von 14 Quadratmetern.<br><br>
-        Alternativ kann nach dem Öffnen die Skalierung mit zwei Fingern justiert werden, falls dies nicht möglich ist.
-        
+    <button class="custom-ar-button" id="custom-ar-button" onclick="activateAR()">Open AR-Model</button>
+
+    <button id="play-button">Play audio first</button>
+
+    <p id="display-text-1" class="display-text">
+        Bald ists vorüber und der Erde geb ich,<br><br>
+        Der ewgen Sonne die Atome wieder,<br><br>
+        Die sich zu Schmerz und Lust in mir gefügt –<br><br>
+        Und von dem mächtgen Talbot, der die Welt<br><br>
+        Mit seinem Kriegsruhm füllte, bleibt nichts übrig,<br><br>
+        Als eine Handvoll leichten Staubs. – So geht<br><br>
+        Der Mensch zu Ende – und die einzige<br><br>
+        Ausbeute, die wir aus dem Kampf des Lebens<br><br>
+        Wegtragen, ist die Einsicht in das Nichts,<br><br>
+        Und herzliche Verachtung alles dessen,<br><br>
+        Was uns erhaben schien und wünschenswert –<br><br>
         <small style="font-size: 15px;">Friedrich Schiller: Die Jungfrau von Orleans</small>
     </p>
 
-    <button class="custom-ar-button" onclick="activateAR()">Open AR-Model</button>
-
-    <button id="play-button">Play audio first</button>
+    <p id="display-text-2" class="display-text" style="margin-bottom: 60px; line-height: 1.2;">
+        Dieses Bühnenmodell im Maßstab 1:30 wurde im Kurs "Inszenierte Räume" bei Natalia Stachon angefertigt.<br>
+        Es ist inspiriert von einem Ausschnitt aus Friedrich Schillers "Die Jungfrau von Orleans".<br>
+        Das AR-Modell soll helfen, die originalen Maßstäbe des Entwurfs zu veranschaulichen.<br>
+        Um die bestmögliche Erfahrung mit dem Modell zu ermöglichen, wird empfohlen, es im Freien oder in einem großen Raum zu präsentieren.<br>
+        Das AR-Modell umfasst eine Fläche von 14 Quadratmetern.<br>
+        Alternativ kann nach dem Öffnen die Skalierung mit zwei Fingern justiert werden, falls dies nicht möglich ist.
+        <small style="font-size: 15px;">Friedrich Schiller: Die Jungfrau von Orleans</small>
+    </p>
 
     <a id="instagram-link" href="https://www.instagram.com/leonkoeroesi/" target="_blank">
         <img src="instagram.png" alt="Instagram Profile" width="50" height="50">
@@ -148,12 +165,17 @@
 
         async function checkARCoreCompatibility() {
             const modelViewer = document.getElementById('model-viewer');
-            const isARCoreSupported = await navigator.xr.isSessionSupported('immersive-ar');
-            if (!isARCoreSupported) {
-                modelViewer.removeAttribute('ar');
-                modelViewer.removeAttribute('ar-modes');
-                document.querySelector('.custom-ar-button').style.display = 'none';
-                alert('Your device is not compatible with AR features. You can still view the 3D model.');
+            try {
+                const isARCoreSupported = await navigator.xr.isSessionSupported('immersive-ar');
+                if (!isARCoreSupported) {
+                    modelViewer.removeAttribute('ar');
+                    modelViewer.removeAttribute('ar-modes');
+                    document.getElementById('custom-ar-button').style.display = 'none';
+                    alert('Your device is not compatible with AR features. You can still view the 3D model.');
+                }
+            } catch (error) {
+                console.error('AR compatibility check failed:', error);
+                alert('AR compatibility check failed. Please try again later.');
             }
         }
 
