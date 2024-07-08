@@ -155,6 +155,9 @@
         <img src="instagram.png" alt="Instagram Profile" width="50" height="50">
     </a>
 
+    <!-- Ensure the audio element is correctly defined -->
+    <audio id="audio-player" src="your-audio-file.mp3"></audio>
+
     <script>
         document.getElementById('play-button').addEventListener('click', function() {
             const audio = document.getElementById('audio-player');
@@ -163,7 +166,7 @@
                 this.textContent = 'Pause';
             } else {
                 audio.pause();
-                this.textContent = 'Play';
+                this.textContent = 'Play audio first';
             }
         });
 
