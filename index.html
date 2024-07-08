@@ -8,25 +8,23 @@
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <style>
         body {
-            font-family: 'Roboto', Arial, sans-serif; /* Use Roboto font */
+            font-family: 'Roboto', Arial, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
             height: 100%;
             margin: 0;
-            padding: 20px; /* Add padding for space around content */
-            background: url('Render.png') no-repeat center center fixed; /* Replace with your image path */
-            background-size: cover;
+            padding: 20px;
             color: white;
-            overflow-y: auto; /* Enable vertical scrolling */
+            overflow-y: auto;
+            background: url('Render.png') no-repeat center center fixed;
+            background-size: cover; /* Ensure background covers the entire container */
         }
         model-viewer {
-            width: 80%;
-            height: 60vh;
-            display: block;
-            margin: auto;
-            margin-bottom: 20px; /* Space below the model */
+            width: 100%; /* Full width on all screen sizes */
+            height: 50vh; /* Adjust height as necessary */
+            margin-bottom: 10px; /* Reduce margin for smaller screens */
         }
         .ar-button {
             background-color: black;
@@ -38,7 +36,7 @@
             outline: none;
             border-radius: 5px;
             text-align: center;
-            margin-bottom: 20px; /* Space below the AR button */
+            margin-bottom: 20px;
         }
         .ar-button:hover {
             background-color: white;
@@ -48,16 +46,16 @@
         }
         #display-text {
             text-align: center;
-            margin-bottom: 20px; /* Space below the text */
-            font-size: 16px; /* Smaller font size */
-            max-width: 70%; /* Reduced width by 30% */
-            line-height: 1.2; /* Reduced line height by 20% */
+            margin-bottom: 20px;
+            font-size: 16px;
+            max-width: 70%;
+            line-height: 1.2;
         }
         #display-text small {
-            font-size: 80%; /* 80% of the main text size */
+            font-size: 80%;
         }
         #audio-player {
-            margin-bottom: 20px; /* Space below the audio player */
+            margin-bottom: 20px;
         }
         #play-button {
             background-color: #1a1c1a;
@@ -72,14 +70,22 @@
             background-color: #2d2f30;
         }
         #instagram-link {
-    /* position: fixed; */ /* Remove fixed positioning */
-    /* bottom: 10px; */
-    /* left: 50%; */
-    /* transform: translateX(-50%); */
-    margin-top: 20px; /* Adjust margin for spacing */
-    text-align: center; /* Center align the link */
-}
-
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        /* Media Query for Tablets and Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px; /* Adjusted padding for smaller screens */
+            }
+            #display-text {
+                font-size: 14px; /* Smaller font size for readability */
+                max-width: 90%; /* Adjusted width for smaller screens */
+            }
+            model-viewer {
+                height: 40vh; /* Reduced height for smaller screens */
+            }
         }
     </style>
 </head>
@@ -134,15 +140,16 @@
     </p>
 
     <p id="display-text">
-      Dieses Bühnenmodell im Maßstab 1 zu 30, ist im Kurs Inszenierte Raüme bei Natalia Stachon entstanden. 
-      Es ist insperiert von einem Ausschnitt aus Friedrich Schillers: Die Jnugfrau von Orleans.
-      Dieses AR Modell soll helfen die eigentlichen Maßstäbe des Entwurfes zu verstehen. 
-      Um die bestmögliche Erfahrung mit dem Modell zu haben ist es zu empfehlen es draußen oder 
-      in eiem großen Raum darzustellen. Das AR-Modell hat einen Umfang von 14 Quadratmetern. 
-      Sollte dies aber nicht möglich sein kann man nach dem Öffnen die skalierung mit 2 Fingern justieren. 
+        Dieses Bühnenmodell im Maßstab 1 zu 30, ist im Kurs Inszenierte Raüme bei Natalia Stachon entstanden. 
+        Es ist insperiert von einem Ausschnitt aus Friedrich Schillers: Die Jnugfrau von Orleans.
+        Dieses AR Modell soll helfen die eigentlichen Maßstäbe des Entwurfes zu verstehen. 
+        Um die bestmögliche Erfahrung mit dem Modell zu haben ist es zu empfehlen es draußen oder 
+        in eiem großen Raum darzustellen. Das AR-Modell hat einen Umfang von 14 Quadratmetern. 
+        Sollte dies aber nicht möglich sein kann man nach dem Öffnen die skalierung mit 2 Fingern justieren. 
 
         <small style="font-size: 15px;">Friedrich Schiller: Die Jungfrau von Orleans</small>
     </p>
+    
     <a id="instagram-link" href="https://www.instagram.com/leonkoeroesi/" target="_blank">
         <img src="instagram.png" alt="Instagram Profile" width="50" height="50">
     </a>
@@ -178,6 +185,4 @@
         document.addEventListener('DOMContentLoaded', checkARCoreCompatibility);
     </script>
 </body>
-</html>
-
 </html>
