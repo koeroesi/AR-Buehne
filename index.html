@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surrounded by Selectors</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <style>
         body {
             font-family: 'Open Sans', Arial, sans-serif; /* Changed font family to Open Sans */
@@ -21,13 +20,18 @@
             background: url('Render.jpg') no-repeat center center fixed;
             background-size: cover; /* Ensure background covers the entire container */
         }
+        h1.headline {
+            font-family: 'Times New Roman', Times, serif; /* Changed font family to Times New Roman */
+            font-size: 28px; /* Increased font size */
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px; /* Increased margin */
+            color: white; /* Ensuring headline is visible on the background */
+        }
         model-viewer {
             width: 100%; /* Full width on all screen sizes */
             height: 50vh; /* Adjust height as necessary */
             margin-bottom: 20px; /* Increased margin */
-        }
-        #ar-button {
-            display: none; /* Hide the original AR button */
         }
         .custom-ar-button {
             background-color: black;
@@ -47,20 +51,12 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.5);
             transform: scale(1.1);
         }
-        .headline {
-            font-family: 'Open Sans', Arial, sans-serif; /* Changed font family to Open Sans */
-            font-size: 28px; /* Increased font size */
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 30px; /* Increased margin */
-            color: white; /* Ensuring headline is visible on the background */
-        }
         #display-text {
             text-align: center;
             margin-bottom: 40px; /* Increased margin */
             font-size: 16px;
             max-width: 70%;
-            line-height: 1.2;
+            line-height: 1.5; /* Increased line height for better spacing */
         }
         #display-text small {
             font-size: 80%;
@@ -119,47 +115,20 @@
                   animation-loop>
     </model-viewer>
 
-    <button class="custom-ar-button" id="custom-ar-button" onclick="activateAR()">Open AR-Model</button>
-
-    <button id="play-button">Play audio first</button>
-
     <p id="display-text">
-        Bald ists vorüber und der Erde geb ich,<br><br>
-
-        Der ewgen Sonne die Atome wieder,<br><br>
-
-        Die sich zu Schmerz und Lust in mir gefügt –<br><br>
-
-        Und von dem mächtgen Talbot, der die Welt<br><br>
-
-        Mit seinem Kriegsruhm füllte, bleibt nichts übrig,<br><br>
-
-        Als eine Handvoll leichten Staubs. – So geht<br><br>
-
-        Der Mensch zu Ende – und die einzige<br><br>
-
-        Ausbeute, die wir aus dem Kampf des Lebens<br><br>
-
-        Wegtragen, ist die Einsicht in das Nichts,<br><br>
-
-        Und herzliche Verachtung alles dessen,<br><br>
-
-        Was uns erhaben schien und wünschenswert –<br><br>
-
-        <small style="font-size: 15px;">Friedrich Schiller: Die Jungfrau von Orleans</small>
-    </p>
-
-    <p id="display-text" style="margin-bottom: 60px;"> <!-- Increased margin-bottom -->
-        Dieses Bühnenmodell im Maßstab 1:30 wurde im Kurs "Inszenierte Räume" bei Natalia Stachon angefertigt.<br>
-        Es ist inspiriert von einem Ausschnitt aus Friedrich Schillers "Die Jungfrau von Orleans".<br>
-        Das AR-Modell soll helfen, die originalen Maßstäbe des Entwurfs zu veranschaulichen.<br>
-        Um die bestmögliche Erfahrung mit dem Modell zu ermöglichen, wird empfohlen, es im Freien oder in einem großen Raum zu präsentieren.<br>
-        Das AR-Modell umfasst eine Fläche von 14 Quadratmetern.<br>
+        Dieses Bühnenmodell im Maßstab 1:30 wurde im Kurs "Inszenierte Räume" bei Natalia Stachon angefertigt.<br><br>
+        Es ist inspiriert von einem Ausschnitt aus Friedrich Schillers "Die Jungfrau von Orleans".<br><br>
+        Das AR-Modell soll helfen, die originalen Maßstäbe des Entwurfs zu veranschaulichen.<br><br>
+        Um die bestmögliche Erfahrung mit dem Modell zu ermöglichen, wird empfohlen, es im Freien oder in einem großen Raum zu präsentieren.<br><br>
+        Das AR-Modell umfasst eine Fläche von 14 Quadratmetern.<br><br>
         Alternativ kann nach dem Öffnen die Skalierung mit zwei Fingern justiert werden, falls dies nicht möglich ist.
         
         <small style="font-size: 15px;">Friedrich Schiller: Die Jungfrau von Orleans</small>
     </p>
-    
+
+    <button class="custom-ar-button" onclick="activateAR()">Open AR-Model</button>
+
+    <button id="play-button">Play audio first</button>
 
     <a id="instagram-link" href="https://www.instagram.com/leonkoeroesi/" target="_blank">
         <img src="instagram.png" alt="Instagram Profile" width="50" height="50">
@@ -183,7 +152,7 @@
             if (!isARCoreSupported) {
                 modelViewer.removeAttribute('ar');
                 modelViewer.removeAttribute('ar-modes');
-                document.getElementById('custom-ar-button').style.display = 'none';
+                document.querySelector('.custom-ar-button').style.display = 'none';
                 alert('Your device is not compatible with AR features. You can still view the 3D model.');
             }
         }
@@ -197,4 +166,3 @@
     </script>
 </body>
 </html>
-
