@@ -4,42 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surrounded by Selectors</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <style>
         body {
-            font-family: 'Roboto', Arial, sans-serif;
+            font-family: 'Oswald', Arial, sans-serif; /* Use Oswald font */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
             height: 100%;
-            margin: 20px; /* Increased margin for all sides */
+            margin: 0;
             padding: 20px;
             color: white;
             overflow-y: auto;
-            background: url('Render.jpg') no-repeat center center fixed;
+            background: url('Render.png') no-repeat center center fixed;
             background-size: cover; /* Ensure background covers the entire container */
         }
         model-viewer {
             width: 100%; /* Full width on all screen sizes */
             height: 50vh; /* Adjust height as necessary */
-            margin-bottom: 20px; /* Increased margin */
+            margin-bottom: 10px; /* Reduce margin for smaller screens */
         }
         .ar-button {
-            display: none; /* Hide the original AR button */
-        }
-        .headline {
-            font-family: 'Times New Roman', Times, serif; /* Changed font family */
-            font-size: 28px; /* Increased font size */
-            font-weight: bold;
+            background-color: black;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            outline: none;
+            border-radius: 5px;
             text-align: center;
-            margin-bottom: 30px; /* Increased margin */
-            color: white; /* Ensuring headline is visible on the background */
+            margin-bottom: 20px;
+        }
+        .ar-button:hover {
+            background-color: white;
+            color: black;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            transform: scale(1.1);
         }
         #display-text {
             text-align: center;
-            margin-bottom: 30px; /* Increased margin */
+            margin-bottom: 20px;
             font-size: 16px;
             max-width: 70%;
             line-height: 1.2;
@@ -48,28 +55,25 @@
             font-size: 80%;
         }
         #audio-player {
-            margin-bottom: 30px; /* Increased margin */
+            margin-bottom: 20px;
         }
         #play-button {
-            background-color: transparent;
+            background-color: #1a1c1a;
             color: white;
-            border: 2px solid white; /* Added white outline */
+            border: none;
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
             border-radius: 5px;
-            margin-bottom: 30px; /* Increased margin */
-            transition: all 0.3s ease;
         }
         #play-button:hover {
-            background-color: white;
-            color: black;
+            background-color: #2d2f30;
         }
         #instagram-link {
-            margin-top: 30px; /* Increased margin */
+            margin-top: 20px;
             text-align: center;
         }
-
+        
         /* Media Query for Tablets and Mobile */
         @media (max-width: 768px) {
             body {
@@ -86,8 +90,6 @@
     </style>
 </head>
 <body>
-    <h1 class="headline">Eine Hand Hand voll leichten Staub</h1>
-
     <model-viewer id="model-viewer"
                   src="Buehne.glb"
                   ios-src="Buehne.usdz"
@@ -101,6 +103,14 @@
                   animation-loop>
     </model-viewer>
 
+    <button class="ar-button" id="ar-button" onclick="activateAR()">Open AR-Model</button>
+
+    <audio id="audio-player">
+        <source src="Buehneaudio.ogg" type="audio/ogg">
+        <source src="Buehneaudio.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
     <button id="play-button">Play audio first</button>
 
     <p id="display-text">
@@ -130,18 +140,14 @@
     </p>
 
     <p id="display-text">
-Dieses Bühnenmodell im Maßstab 1:30 wurde im Kurs "Inszenierte Räume" bei Natalia Stachon angefertigt.<br>
-Es ist inspiriert von einem Ausschnitt aus Friedrich Schillers "Die Jungfrau von Orleans".<br>
-Das AR-Modell soll helfen, die originalen Maßstäbe des Entwurfs zu veranschaulichen.<br>
-Um die bestmögliche Erfahrung mit dem Modell zu ermöglichen, wird empfohlen, es im Freien oder in einem großen Raum zu präsentieren.<br>
-Das AR-Modell umfasst eine Fläche von 14 Quadratmetern.<br>
-Alternativ kann nach dem Öffnen die Skalierung mit zwei Fingern justiert werden, falls dies nicht möglich ist.
-        
-       
-        <small style="font-size: 15px;">Friedrich Schiller: Die Jungfrau von Orleans</small>
-    </p>
-    
+        Dieses Bühnenmodell im Maßstab 1 zu 30, ist im Kurs Inszenierte Raüme bei Natalia Stachon entstanden. 
+        Es ist insperiert von einem Ausschnitt aus Friedrich Schillers: Die Jnugfrau von Orleans.
+        Dieses AR Modell soll helfen die eigentlichen Maßstäbe des Entwurfes zu verstehen. 
+        Um die bestmögliche Erfahrung mit dem Modell zu haben ist es zu empfehlen es draußen oder 
+        in eiem großen Raum darzustellen. Das AR-Modell hat einen Umfang von 14 Quadratmetern. 
+        Sollte dies aber nicht möglich sein kann man nach dem Öffnen die skalierung mit 2 Fingern justieren. 
 
+   
     <a id="instagram-link" href="https://www.instagram.com/leonkoeroesi/" target="_blank">
         <img src="instagram.png" alt="Instagram Profile" width="50" height="50">
     </a>
