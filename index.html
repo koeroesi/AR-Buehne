@@ -26,8 +26,26 @@
             height: 50vh; /* Adjust height as necessary */
             margin-bottom: 20px; /* Increased margin */
         }
-        .ar-button {
+        #ar-button {
             display: none; /* Hide the original AR button */
+        }
+        .custom-ar-button {
+            background-color: black;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            outline: none;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .custom-ar-button:hover {
+            background-color: white;
+            color: black;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            transform: scale(1.1);
         }
         .headline {
             font-family: 'Open Sans', Arial, sans-serif; /* Changed font family to Open Sans */
@@ -101,6 +119,8 @@
                   animation-loop>
     </model-viewer>
 
+    <button class="custom-ar-button" id="custom-ar-button" onclick="activateAR()">Open AR-Model</button>
+
     <button id="play-button">Play audio first</button>
 
     <p id="display-text">
@@ -163,7 +183,7 @@
             if (!isARCoreSupported) {
                 modelViewer.removeAttribute('ar');
                 modelViewer.removeAttribute('ar-modes');
-                document.getElementById('ar-button').style.display = 'none';
+                document.getElementById('custom-ar-button').style.display = 'none';
                 alert('Your device is not compatible with AR features. You can still view the 3D model.');
             }
         }
@@ -177,3 +197,4 @@
     </script>
 </body>
 </html>
+
