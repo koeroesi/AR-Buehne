@@ -8,39 +8,51 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
             margin: 0;
-            background: url('Render.png') no-repeat center center fixed; /* Replace with your image path */
+            padding: 0;
+            background: url('Render.png') no-repeat center center fixed;
             background-size: cover;
             color: white;
             transition: background-color 0.1s;
+            overflow-y: scroll;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 20px;
         }
         model-viewer {
-            width: 80%;
-            height: 60vh;
+            width: 50%;
+            height: 40vh;
             display: block;
             margin: auto;
         }
-        .fancy-button {
-            background-color: white;
-            color: black;
-            padding: 10px 20px;
-            font-size: 16px;
+        .ar-button {
+            background-color: #333;
+            color: white;
+            padding: 20px 40px;
+            font-size: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
             outline: none;
-            border-radius: 5px;
-            margin-bottom: 20px;
+            border-radius: 10px;
+            margin-top: -5cm;
+            text-align: center;
         }
-        .fancy-button:hover {
-            background-color: black;
-            color: white;
+        .ar-button:hover {
+            background-color: #555;
             box-shadow: 0 0 10px rgba(0,0,0,0.5);
             transform: scale(1.1);
+        }
+        .text-block {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            margin: 20px 0;
+            width: 80%;
+            border-radius: 10px;
         }
         #display-image {
             max-width: 80%;
@@ -51,65 +63,62 @@
         #audio-player {
             display: none;
         }
-        #play-button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        #play-button:hover {
-            background-color: #0056b3;
-        }
     </style>
 </head>
 <body>
-    <model-viewer id="model-viewer"
-                  src="Buehne.glb"
-                  ios-src="Buehne.usdz"
-                  alt="The Portal"
-                  ar
-                  ar-modes="webxr scene-viewer quick-look"
-                  environment-image="neutral"
-                  auto-rotate
-                  camera-controls
-                  animation-name="CubeAction"
-                  animation-loop>
-    </model-viewer>
+    <div class="container">
+        <model-viewer id="model-viewer"
+                      src="Buehne.glb"
+                      ios-src="Buehne.usdz"
+                      alt="The Portal"
+                      ar
+                      ar-modes="webxr scene-viewer quick-look"
+                      environment-image="neutral"
+                      auto-rotate
+                      camera-controls
+                      animation-name="CubeAction"
+                      animation-loop>
+        </model-viewer>
 
-    <button class="fancy-button" onclick="showImage(event)">???</button>
-    <img id="display-image" src="" alt="Image">
+        <button class="ar-button" onclick="openARModel()">Open AR Model</button>
+        <img id="display-image" src="" alt="Image">
 
-    <audio id="audio-player">
-        <source src="Buehneaudio.ogg" type="audio/ogg">
-        <source src="Buehneaudio.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    
-    <button id="play-button">Play</button>
+        <audio id="audio-player">
+            <source src="Buehneaudio.ogg" type="audio/ogg">
+            <source src="Buehneaudio.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        
+        <a href="https://www.instagram.com/leonkoeroesi/" target="_blank">
+            <img src="instagram.png" alt="Instagram" width="50" height="50">
+        </a>
 
-    <a href="https://www.instagram.com/leonkoeroesi/" target="_blank">
-        <img src="instagram.png" alt="Instagram" width="50" height="50">
-    </a>
+        <div class="text-block">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa.</p>
+        </div>
+
+        <div class="text-block">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa.</p>
+        </div>
+    </div>
 
     <script>
-        document.getElementById('play-button').addEventListener('click', function() {
-            const audio = document.getElementById('audio-player');
-            if (audio.paused) {
+        document.getElementById('model-viewer').addEventListener('ar-status', (event) => {
+            if (event.detail.status === 'session-started') {
+                const audio = document.getElementById('audio-player');
                 audio.play();
-                this.textContent = 'Pause';
-            } else {
-                audio.pause();
-                this.textContent = 'Play';
             }
         });
+
+        function openARModel() {
+            const modelViewer = document.getElementById('model-viewer');
+            modelViewer.activateAR();
+        }
 
         function showImage(event) {
             event.stopPropagation();
             const img = document.getElementById('display-image');
-            img.src = 'Text_AR_2.png'; // Replace with the path to your image
+            img.src = 'Text_AR_2.png';
             img.style.display = 'block';
         }
 
@@ -124,11 +133,15 @@
 
         async function checkARCoreCompatibility() {
             const modelViewer = document.getElementById('model-viewer');
-            const isARCoreSupported = await navigator.xr.isSessionSupported('immersive-ar');
-            if (!isARCoreSupported) {
-                modelViewer.removeAttribute('ar');
-                modelViewer.removeAttribute('ar-modes');
-                alert('Your device is not compatible with AR features. You can still view the 3D model.');
+            try {
+                const isARCoreSupported = await navigator.xr.isSessionSupported('immersive-ar');
+                if (!isARCoreSupported) {
+                    modelViewer.removeAttribute('ar');
+                    modelViewer.removeAttribute('ar-modes');
+                    alert('Your device is not compatible with AR features. You can still view the 3D model.');
+                }
+            } catch (e) {
+                console.error("ARCore compatibility check failed:", e);
             }
         }
 
