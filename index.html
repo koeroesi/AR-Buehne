@@ -14,7 +14,7 @@
             align-items: center;
             justify-content: flex-start;
             height: 100%;
-            margin: 0;
+            margin: 20px; /* Increased margin for all sides */
             padding: 20px;
             color: white;
             overflow-y: auto;
@@ -24,7 +24,7 @@
         model-viewer {
             width: 100%; /* Full width on all screen sizes */
             height: 50vh; /* Adjust height as necessary */
-            margin-bottom: 10px; /* Reduce margin for smaller screens */
+            margin-bottom: 20px; /* Increased margin */
         }
         .ar-button {
             background-color: black;
@@ -36,7 +36,7 @@
             outline: none;
             border-radius: 5px;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px; /* Increased margin */
         }
         .ar-button:hover {
             background-color: white;
@@ -46,7 +46,7 @@
         }
         #display-text {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px; /* Increased margin */
             font-size: 16px;
             max-width: 70%;
             line-height: 1.2;
@@ -55,7 +55,7 @@
             font-size: 80%;
         }
         #audio-player {
-            margin-bottom: 20px;
+            margin-bottom: 30px; /* Increased margin */
         }
         #play-button {
             background-color: #1a1c1a;
@@ -65,15 +65,21 @@
             font-size: 16px;
             cursor: pointer;
             border-radius: 5px;
+            margin-bottom: 30px; /* Increased margin */
         }
         #play-button:hover {
             background-color: #2d2f30;
         }
         #instagram-link {
-            margin-top: 20px;
+            margin-top: 30px; /* Increased margin */
             text-align: center;
         }
-        
+        .headline {
+            font-size: 24px; /* Adjust headline font size */
+            font-weight: bold;
+            margin-bottom: 30px; /* Increased margin */
+        }
+
         /* Media Query for Tablets and Mobile */
         @media (max-width: 768px) {
             body {
@@ -90,6 +96,8 @@
     </style>
 </head>
 <body>
+    <h1 class="headline">Eine Hand Hand voll leichten Staub</h1>
+
     <model-viewer id="model-viewer"
                   src="Buehne.glb"
                   ios-src="Buehne.usdz"
